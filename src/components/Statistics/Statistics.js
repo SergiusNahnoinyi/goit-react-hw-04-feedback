@@ -1,17 +1,25 @@
 import PropTypes from 'prop-types';
 import s from './Statistics.module.css';
 
-export default function Statistics({ state, total, positivePercentage }) {
+export default function Statistics({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) {
   return (
     <div className="statistics-container">
       <ul className={s.list}>
-        {Object.entries(state).map(([key, value]) => {
-          return (
-            <li key={key} className="item">
-              {key[0].toUpperCase() + key.substring(1)}: {value}
-            </li>
-          );
-        })}
+        <li key="Good" className="item">
+          Good: {good}
+        </li>
+        <li key="Neutral" className="item">
+          Neutral: {neutral}
+        </li>
+        <li key="Bad" className="item">
+          Bad: {bad}
+        </li>
       </ul>
 
       <p>Total: {total}</p>
@@ -21,12 +29,9 @@ export default function Statistics({ state, total, positivePercentage }) {
 }
 
 Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
-
-  state: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
+  percentage: PropTypes.number,
 };

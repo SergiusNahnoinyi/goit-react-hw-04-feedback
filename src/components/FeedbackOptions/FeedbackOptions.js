@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import s from './Feedback.module.css';
 
-export default function FeedbackOptions({ state, onLeaveFeedback }) {
+export default function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <div className={s.container}>
-      {Object.keys(state).map(key => (
-        <button key={key} type="button" onClick={() => onLeaveFeedback(key)}>
-          {key[0].toUpperCase() + key.substring(1)}
+      {options.map(option => (
+        <button key={option} type="button" onClick={onLeaveFeedback}>
+          {option[0].toUpperCase() + option.substring(1)}
         </button>
       ))}
     </div>
@@ -15,10 +15,5 @@ export default function FeedbackOptions({ state, onLeaveFeedback }) {
 
 FeedbackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
-
-  state: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
