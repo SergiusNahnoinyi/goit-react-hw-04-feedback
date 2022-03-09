@@ -1,0 +1,8 @@
+.title,
+.section {
+  margin-bottom: 20px;
+}
+
+.section:first-child {
+  margin-top: 20px;
+}
